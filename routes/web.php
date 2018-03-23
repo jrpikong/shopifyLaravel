@@ -12,5 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $shopDomain = session('shopify_domain');
+    $shop = [];
+    if($shopDomain) {
+        $shop = ShopifyApp::shop()->where('shopify_domain', $shopDomain)->first();
+    }
+    return view('welcome',compact('shop'));
+})->name('home');
+
+Route::get(
+    '/maps-filter/{filter}',
+    'AppProxyController@filterCity'
+)->middleware('cors');
+Route::get(
+    '/maps',
+    'AppProxyController@loadViewElement'
+)->middleware('cors');

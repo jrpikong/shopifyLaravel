@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'auth.webhook' => \OhMyBrew\ShopifyApp\Middleware\AuthWebhook::class,
         'auth.proxy' => \OhMyBrew\ShopifyApp\Middleware\AuthProxy::class,
         'billable' => \OhMyBrew\ShopifyApp\Middleware\Billable::class,
+        'cors' => \App\Http\Middleware\Cors::class,
     ];
 }
