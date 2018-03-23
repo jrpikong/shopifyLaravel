@@ -216,7 +216,7 @@ return [
 
     'scripttags' => [
             [
-                'src' => 'https://91e2f64f.ngrok.io/js/popboxlocation.js',
+                'src' => env('SCRIPTTAG_SRC', 'https://shopify.popbox.asia/js/popboxlocation.js'),
                 'event' =>  'onload',
                 'display_scope' => 'online_store'
             ]

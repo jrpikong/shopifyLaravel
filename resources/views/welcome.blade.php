@@ -68,10 +68,7 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
-                    @if(empty($shop))
-                            <a href="{{ url('/login') }}">Install</a>
-                    @endif
-
+                    <a href="{{ url('/login') }}">Install</a>
                 </div>
             @endif
 

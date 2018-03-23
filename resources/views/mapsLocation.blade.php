@@ -73,15 +73,18 @@
 <!-- Nav tabs -->
 <div class="card">
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation"><a href="#popbox" aria-controls="profile" role="tab" data-toggle="tab">Popbox Pickup</a></li>
-        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">To Address</a></li>
+        <li role="presentation" class="active">
+            <a href="#popbox" aria-controls="profile" role="tab" data-toggle="tab">Popbox Pickup</a>
+        </li>
+        <li role="presentation">
+            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">To Address</a>
+        </li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane" id="popbox">
+        <div role="tabpanel" class="tab-pane active" id="popbox">
             <div class="maps">
-
                 <div>
                     <input type="hidden" id="addres1">
                     <input type="hidden" id="addres2">
@@ -91,8 +94,13 @@
                     <input type="hidden" id="zipcode">
                     <input type="hidden" id="popboxValidation">
                 </div>
-                @if($lockers)
+                @if($cities)
                     <select name="search" id="valueSearch">
+                        @php
+                            $collection = collect($cities);
+                            $sorted = $collection->sort();
+                            $cities = $sorted->values()->all();
+                        @endphp
                         @foreach($cities as $city)
                             <option value="{{$city}}">{{$city}}</option>
                         @endforeach
@@ -134,7 +142,7 @@
             </div>
         </div>
 
-        <div role="tabpanel" class="tab-pane active" id="home">
+        <div role="tabpanel" class="tab-pane" id="home">
             Please click the checkout button to continue without Popbox Locker.
         </div>
 
@@ -146,7 +154,7 @@
         var value = $(this).val()
         var lockers= [];
         $.ajax({
-            url: "https://91e2f64f.ngrok.io/maps-filter/"+value,
+            url: "https://5e400a17.ngrok.io//maps-filter/"+value,
             beforeSend: function() {
                 $('.locations').html('<div>Loading...</div>');
             },
@@ -188,7 +196,7 @@
 
     function setValue(e) {
         var w = $('#popboxValidation').val('withPopbox');
-        $(e).toggleClass('active').siblings().removeClass('active')
+        $(e).parent('.location').toggleClass('active').siblings().removeClass('active')
         var address1 = $(e).data('address1')
         $('#addres1').val(address1)
 
@@ -210,7 +218,6 @@
     }
 
     $('.location').click(function (e) {
-        console.log("hello")
         $(this).toggleClass('active').siblings().removeClass('active')
         var radio = $(this).find('.locationRadio')
         radio.prop("checked", true)
