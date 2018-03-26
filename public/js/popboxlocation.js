@@ -1,7 +1,7 @@
 $( document ).ready(function() {
     var element = $('.cart').find('[name="checkout"]');
     $.ajax({
-        url: "https://5e400a17.ngrok.io/maps",
+        url: "https://shopify.popbox.asia/maps",
     }).done(function (data) {
         $(element).before('<div id="popboxLocationApp">' + data + '</div>');
     });
