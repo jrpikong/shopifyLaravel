@@ -154,7 +154,7 @@
         var value = $(this).val()
         var lockers= [];
         $.ajax({
-            url: "https://5e400a17.ngrok.io//maps-filter/"+value,
+            url: "https://shopify.popbox.asia/maps-filter/"+value,
             beforeSend: function() {
                 $('.locations').html('<div>Loading...</div>');
             },
